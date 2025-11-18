@@ -1,0 +1,42 @@
+# Unity generated files
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/Assets/AssetStoreTools/
+/Assets/AssetStoreTools.meta
+/Assets/AddressableAssetsData/
+/Assets/AddressableAssetsData.meta
+/.vscode/
+
+# Visual Studio / Rider / IDE generated files
+.vs/
+.idea/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+
+# macOS specific files
+.DS_Store
+**/.DS_Store
+
+# Windows specific files
+Thumbs.db
+
+# Optional: Build output (if not in a dedicated build folder)
+*.exe
+*.apk
+*.xapk
+*.app
+*.ipa
+*.unitypackage
+
+# Optional: User-specific or sensitive files
+# For example, if you have a local config file that shouldn't be shared
+# MyLocalSettings.json
