@@ -14,6 +14,11 @@ public class CarMovement : MonoBehaviour
     void Update()
     {
         transform.Translate(direction * speed * Time.deltaTime);   
+
+        if (Mathf.Abs(transform.position.x) > 70f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void LeavesScreen()
