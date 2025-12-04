@@ -4,14 +4,14 @@ public class GameEvents : MonoBehaviour
 {
     // Creates delegate
     public delegate void SpaceAction();
-    public static event SpaceAction ifSpacePressed;
+    public static SpaceAction IfSpacePressed;
     
 // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ifSpacePressed?.Invoke();
+            IfSpacePressed?.Invoke();
         }
     }
 }
