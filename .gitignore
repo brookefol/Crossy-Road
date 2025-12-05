@@ -9,6 +9,8 @@
 /Assets/AddressableAssetsData/
 /Assets/AddressableAssetsData.meta
 /.vscode/
+[Ll]ogs/
+UserSettings/
 
 # Visual Studio / Rider / IDE generated files
 .vs/
