@@ -6,8 +6,8 @@ public class FoxControl : MonoBehaviour
     public static FoxControl Instance;
 
     // ----------------------- MOVEMENT -------------------------
-    public float baseSpeed = 8f;             // Starting speed
-    public float sprintSpeedIncrement = 2f;  // Speed added each Shift press
+    // public float baseSpeed = 8f;             // Starting speed
+//    public float sprintSpeedIncrement = 2f;  // Speed added each Shift press
 
     public Rigidbody rb;
     private Vector3 movement;
@@ -22,6 +22,10 @@ public class FoxControl : MonoBehaviour
     private GameRunning gameStatus;
 
     private Vector3 startingPosition = new Vector3(0, 0, -50);
+   
+    public State state = new FoxNormalState();
+
+    public float baseSpeed = 0;
 
     // ----------------------- UNITY METHODS -----------------------
     void Awake()
@@ -46,6 +50,7 @@ public class FoxControl : MonoBehaviour
 
     void Update()
     {
+        baseSpeed = state.getSpeed();
         if (gameStatus == GameRunning.GameGoing)
         {
             // ---------------- Movement Input ----------------
@@ -61,13 +66,15 @@ public class FoxControl : MonoBehaviour
                 rb.rotation = Quaternion.Slerp(rb.rotation, targetRotation, 0.15f);
             }
 
-            // ---------------- SPEED STACKING (Shift) ----------------
+            /*// ---------------- SPEED STACKING (Shift) ----------------
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 baseSpeed += sprintSpeedIncrement;
                 Debug.Log("Speed stacked! New speed = " + baseSpeed);
             }
+            */
         }
+        state = state.nextState();
 
         // ---------------- Restart ----------------
         if (Input.GetKeyDown(KeyCode.R))
@@ -81,8 +88,8 @@ public class FoxControl : MonoBehaviour
     void FixedUpdate()
     {
         if (gameStatus == GameRunning.GameGoing)
-        {
-            rb.MovePosition(rb.position + movement * baseSpeed * Time.fixedDeltaTime);
+        {    
+        rb.MovePosition(rb.position + movement * baseSpeed * Time.fixedDeltaTime);
         }
     }
 
@@ -106,6 +113,6 @@ public class FoxControl : MonoBehaviour
         transform.position = startingPosition;
         rb.linearVelocity = Vector3.zero;
 
-        baseSpeed = 8f; // Reset to default starting speed
+        //baseSpeed = 8f; // Reset to default starting speed
     }
 }

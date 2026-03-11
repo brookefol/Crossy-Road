@@ -196,6 +196,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3a497b8e99f03b4091107665950eddc, type: 3}
       insertIndex: -1
       addedObject: {fileID: 835407462}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3a497b8e99f03b4091107665950eddc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 835407466}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3a497b8e99f03b4091107665950eddc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 835407465}
   m_SourcePrefab: {fileID: 100100000, guid: f3a497b8e99f03b4091107665950eddc, type: 3}
 --- !u!1 &835407458 stripped
 GameObject:
@@ -214,7 +220,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e949d19a64042f64da5515a0ff3394dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalWalk
-  speed: 2
+  baseSpeed: 8
+  sprintSpeedIncrement: 2
   rb: {fileID: 0}
 --- !u!65 &835407462
 BoxCollider:
@@ -264,6 +271,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
+--- !u!4 &835407464 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f3a497b8e99f03b4091107665950eddc, type: 3}
+  m_PrefabInstance: {fileID: 546525599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &835407465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835407458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90f05253188892449c896981114ef30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameEvents
+--- !u!114 &835407466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835407458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a728ab5b2f77f34dad02d9be31c89ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoxJump
 --- !u!1 &1073885671
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +313,7 @@ GameObject:
   - component: {fileID: 1073885673}
   - component: {fileID: 1073885672}
   - component: {fileID: 1073885676}
+  - component: {fileID: 1073885677}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -414,6 +451,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5bf3444dd4bd4499969f8dfbf2c5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowCamera
+--- !u!114 &1073885677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073885671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b65ac510e68d40c88cbe9f5eddf72c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowCamera
+  target: {fileID: 835407464}
+  offset: {x: 25, y: 10, z: -10}
+  smoothSpeed: 0.125
 --- !u!1 &1441565056
 GameObject:
   m_ObjectHideFlags: 0
