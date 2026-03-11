@@ -4,25 +4,24 @@ using UnityEngine;
 public class CarSpawner : MonoBehaviour
 {
     public GameObject carPrefab;
-    public float spawnDelay = 1.5f;
+    public float spawnDelay = 1f;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private SpawnProxy proxy = new SpawnProxy();
+
     void Start()
     {
-        StartCoroutine("SpawnCarLoop");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        StartCoroutine(SpawnCarLoop());
     }
 
     private IEnumerator SpawnCarLoop()
     {
-        for(;;)
+        for (;;)
         {
-            SpawnCar();
+            if (proxy.CanSpawn())
+            {
+                SpawnCar();
+            }
+
             yield return new WaitForSeconds(spawnDelay);
         }
     }
