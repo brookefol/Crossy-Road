@@ -8,6 +8,7 @@ public class CarSpawner : MonoBehaviour
 
     private SpawnProxy proxy = new SpawnProxy();
 
+
     void Start()
     {
         StartCoroutine(SpawnCarLoop());
@@ -30,4 +31,6 @@ public class CarSpawner : MonoBehaviour
     {
         Instantiate(carPrefab, transform.position, transform.rotation);
     }
+
+
 }

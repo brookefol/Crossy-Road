@@ -19,6 +19,18 @@ public class FoxControl : MonoBehaviour
         GameRestarting
     }
 
+    //make fox listen to reset pubsub
+    private void OnEnable()
+{
+    GameEvents.OnGameReset += restartGame;
+}
+
+private void OnDisable()
+{
+    GameEvents.OnGameReset -= restartGame;
+}
+
+
     private GameRunning gameStatus;
 
     private Vector3 startingPosition = new Vector3(0, 0, -50);
@@ -79,7 +91,7 @@ public class FoxControl : MonoBehaviour
         // ---------------- Restart ----------------
         if (Input.GetKeyDown(KeyCode.R))
         {
-            restartGame();
+            GameEvents.TriggerGameReset();
             gameStatus = GameRunning.GameGoing;
             Debug.Log("The game has begun anew");
         }
@@ -100,6 +112,9 @@ public class FoxControl : MonoBehaviour
         {
             Debug.Log("Game Over!");
             gameStatus = GameRunning.GameEnded;
+            //sends the annoncement to game events, which then sends it out to other objects
+            GameEvents.TriggerGameOver();
+
             return;
         }
     }
@@ -107,11 +122,13 @@ public class FoxControl : MonoBehaviour
     // ----------------------- GAME RESET -----------------------
     void restartGame()
     {
-        gameStatus = GameRunning.GameRestarting;
+        // gameStatus = GameRunning.GameRestarting;
         Debug.Log("Game Restarting");
 
         transform.position = startingPosition;
         rb.linearVelocity = Vector3.zero;
+        gameStatus = GameRunning.GameGoing;
+        state = new FoxNormalState();
 
         //baseSpeed = 8f; // Reset to default starting speed
     }
