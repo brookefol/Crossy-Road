@@ -1,36 +1,31 @@
 using System.Collections;
 using UnityEngine;
 
-public class CarSpawner : MonoBehaviour
+public class CarSpawner : MonoBehaviour, ICarSpawner
 {
     public GameObject carPrefab;
     public float spawnDelay = 1f;
 
-    private SpawnProxy proxy = new SpawnProxy();
-
+    private SpawnProxy proxy;
 
     void Start()
     {
+        proxy = new SpawnProxy(this);
         StartCoroutine(SpawnCarLoop());
     }
 
     private IEnumerator SpawnCarLoop()
     {
-        for (;;)
+        while (true)
         {
-            if (proxy.CanSpawn())
-            {
-                SpawnCar();
-            }
+            proxy.TrySpawn(Time.time);
 
             yield return new WaitForSeconds(spawnDelay);
         }
     }
 
-    private void SpawnCar()
+    public void SpawnCar()
     {
         Instantiate(carPrefab, transform.position, transform.rotation);
     }
-
-
 }

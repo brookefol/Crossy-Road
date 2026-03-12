@@ -1,40 +1,20 @@
-using UnityEngine;
-
 public class SpawnProxy
 {
+    private ICarSpawner spawner;
     private float lastSpawnTime = 0f;
-    private float minSpawnInterval = 2f;
-    private bool allowSpawn = true;
+    private float minSpawnInterval = 0.8f;
 
-     public SpawnProxy()
+    public SpawnProxy(ICarSpawner spawner)
     {
-        // Subscribe to Game Over and Game Reset
-        GameEvents.OnGameOver += StopSpawn;
-        GameEvents.OnGameReset += ResetSpawn;
+        this.spawner = spawner;
     }
 
-    public bool CanSpawn()
+    public void TrySpawn(float time)
     {
-        if (Time.time - lastSpawnTime >= minSpawnInterval && allowSpawn)
+        if (time - lastSpawnTime >= minSpawnInterval)
         {
-            Debug.Log("Proxy: allowing spawn");
-
-            lastSpawnTime = Time.time;
-            return true;
+            lastSpawnTime = time;
+            spawner.SpawnCar();
         }
-        Debug.Log("Proxy: blocking spawn");
-        return false;
-    }
-
-    //stops and resets spawner when called
-    public void StopSpawn()
-    {
-        allowSpawn = false;
-    }
-
-    public void ResetSpawn()
-    {
-        allowSpawn = true;
-        lastSpawnTime = 0f;
     }
 }
