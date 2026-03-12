@@ -112,7 +112,7 @@ private void OnDisable()
         if (collision.collider.CompareTag("Car"))
         {
             Debug.Log("Game Over!");
-            gameStatus = GameRunning.GameEnded;
+            // gameStatus = GameRunning.GameEnded;
             //sends the annoncement to game events, which then sends it out to other objects
             GameEvents.TriggerGameOver();
 

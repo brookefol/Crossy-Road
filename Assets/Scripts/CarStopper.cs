@@ -26,14 +26,15 @@ public class CarStopper : MonoBehaviour
     void StopCar()
     {
         car.speed = 0f;
-        Destroy(gameObject, 3f);
         StartCoroutine(ResetAfterDelay());
+        
     }
 
     IEnumerator ResetAfterDelay()
     {
         yield return new WaitForSeconds(3f);
         GameEvents.TriggerGameReset();
+        Destroy(gameObject, 3f);
     }
    
 }
