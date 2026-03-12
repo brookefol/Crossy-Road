@@ -35,7 +35,7 @@ private void OnDisable()
 
     private Vector3 startingPosition = new Vector3(0, 0, -50);
    
-    public State state = new FoxNormalState();
+    public IState state = new FoxNormalState();
 
     public float baseSpeed = 0;
 

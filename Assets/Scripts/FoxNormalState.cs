@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class FoxNormalState : State
+public class FoxNormalState : IState
 {
     
-    public override float getSpeed(){
+    public float getSpeed(){
         return 15;
     }
     
 
-    public override State nextState(){
+    public IState nextState(){
         if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 return new FoxSpeedyState(100);
