@@ -10,7 +10,7 @@ public class FoxSpeedyState : IState
         return 50;
     }    
     public IState nextState(){
-        if (time >= 0)
+        if (time > 0)
             {
                 return new FoxSpeedyState(--time);
             }
