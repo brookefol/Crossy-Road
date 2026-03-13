@@ -3,25 +3,24 @@ using UnityEngine;
 public class FoxJump : MonoBehaviour
 {
     private Rigidbody rb;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private IJumpCondition jumpCondition; // ← injected
+
     void Start()
     {
-        rb = GetComponent<Rigidbody>(); //fox has rigid body
+        rb = GetComponent<Rigidbody>();
+        jumpCondition = new GroundedCondition(rb); // ← swap condition here
     }
 
-    private void OnEnable()
-    {
-        GameEvents.IfSpacePressed += Jump; // jumps fox
-    }
-    
-    private void OnDisable()
-    {
-        GameEvents.IfSpacePressed -= Jump;
-    }
-     
+    private void OnEnable() => GameEvents.IfSpacePressed += Jump;
+    private void OnDisable() => GameEvents.IfSpacePressed -= Jump;
+
     private void Jump()
     {
-        Debug.Log("Fox Jump!"); //Test that it works
-        rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+        if (jumpCondition.CanJump())
+        {
+            Debug.Log("Fox Jump!");
+            // test
+            rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+        }
     }
 }
