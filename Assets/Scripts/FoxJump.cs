@@ -6,10 +6,10 @@ public class FoxJump : MonoBehaviour
     private IJumpCondition jumpCondition; // ← injected
 
     void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        jumpCondition = new GroundedCondition(rb); // ← swap condition here
-    }
+{
+    rb = GetComponent<Rigidbody>();
+    jumpCondition = new GroundedCondition(new RigidbodyVelocityProvider(rb)); // ← wrap it
+}
 
     private void OnEnable() => GameEvents.IfSpacePressed += Jump;
     private void OnDisable() => GameEvents.IfSpacePressed -= Jump;
