@@ -1,17 +1,14 @@
-// GroundedCondition.cs — only jump when touching the ground
+// GroundedCondition.cs
 using UnityEngine;
-
 public class GroundedCondition : IJumpCondition
 {
-    private Rigidbody rb;
-
-    public GroundedCondition(Rigidbody rb)
+    private IVelocityProvider velocityProvider;
+    public GroundedCondition(IVelocityProvider velocityProvider)
     {
-        this.rb = rb;
+        this.velocityProvider = velocityProvider;
     }
-
     public bool CanJump()
     {
-        return Mathf.Abs(rb.linearVelocity.y) < 0.01f; // near-zero vertical velocity = grounded
+        return Mathf.Abs(velocityProvider.GetVerticalVelocity()) < 0.01f;
     }
 }
