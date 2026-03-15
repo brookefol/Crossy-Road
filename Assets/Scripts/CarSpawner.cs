@@ -10,7 +10,7 @@ public class CarSpawner : MonoBehaviour, ICarSpawner
 
     void Start()
     {
-        proxy = new SpawnProxy(this);
+        spawner = new SpawnProxy(this);
         StartCoroutine(SpawnCarLoop());
     }
 
