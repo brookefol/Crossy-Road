@@ -6,7 +6,7 @@ public class CarSpawner : MonoBehaviour, ICarSpawner
     public GameObject carPrefab;
     public float spawnDelay = 1f;
 
-    private SpawnProxy proxy;
+    private ICarSpawner spawner;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class CarSpawner : MonoBehaviour, ICarSpawner
     {
         while (true)
         {
-            proxy.TrySpawn(Time.time);
+            spawner.SpawnCar();
 
             yield return new WaitForSeconds(spawnDelay);
         }

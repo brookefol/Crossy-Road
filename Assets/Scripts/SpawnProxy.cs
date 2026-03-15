@@ -1,4 +1,4 @@
-public class SpawnProxy
+public class SpawnProxy: ICarSpawner
 {
     private ICarSpawner spawner;
     private float lastSpawnTime = 0f;
@@ -7,6 +7,11 @@ public class SpawnProxy
     public SpawnProxy(ICarSpawner spawner)
     {
         this.spawner = spawner;
+    }
+
+    public void SpawnCar()
+    {
+        TrySpawn(UnityEngine.Time.time);
     }
 
     public void TrySpawn(float time)
