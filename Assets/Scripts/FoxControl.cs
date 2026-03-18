@@ -23,12 +23,12 @@ public class FoxControl : MonoBehaviour
     //make fox listen to reset pubsub
     private void OnEnable()
 {
-    GameEvents.OnGameReset += restartGame;
+    RealGameEvents.OnGameReset += restartGame;
 }
 
 private void OnDisable()
 {
-    GameEvents.OnGameReset -= restartGame;
+    RealGameEvents.OnGameReset -= restartGame;
 }
 
 

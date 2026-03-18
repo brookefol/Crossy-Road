@@ -15,12 +15,12 @@ public class CarStopper : MonoBehaviour
     private void OnEnable()
     {
         //adds the car to the subscriber list for OnGameOver
-        GameEvents.OnGameOver += StopCar;
+        RealGameEvents.OnGameOver += StopCar;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnGameOver -= StopCar;
+        RealGameEvents.OnGameOver -= StopCar;
     }
 
     void StopCar()

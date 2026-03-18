@@ -9,14 +9,14 @@ public class GameOverUI : MonoBehaviour
     private void OnEnable()
     {
         //subsribed to GameOver and Game Reset
-        GameEvents.OnGameOver += ShowLoseText;
-        GameEvents.OnGameReset += HideLoseText;
+        RealGameEvents.OnGameOver += ShowLoseText;
+        RealGameEvents.OnGameReset += HideLoseText;
     }
 
     private void OnDisable()
     {
-        GameEvents.OnGameOver -= ShowLoseText;
-        GameEvents.OnGameReset -= HideLoseText;
+        RealGameEvents.OnGameOver -= ShowLoseText;
+        RealGameEvents.OnGameReset -= HideLoseText;
     }
 
     private void ShowLoseText()

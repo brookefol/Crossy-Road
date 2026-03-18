@@ -17,8 +17,7 @@ public class PubSubTest
 
     private bool gameOverTriggered;
     private bool gameResetTriggered;
-    private DummyCarSpawner carSpawner;  
-    private SpawnProxy spawnProxy;       
+    private DummyCarSpawner carSpawner;     
 
     // ---------------------
     // Setup / TearDown
@@ -77,19 +76,6 @@ public class PubSubTest
         GameEvents.TriggerGameOver();
 
         Assert.IsFalse(tempTriggered, "Unsubscribed subscriber was incorrectly called.");
-    }
-
-    [Test]
-    public void SpawnProxy_StopsSpawning_OnGameOver()
-
-    {
-         // Initialize dummy spawner and proxy
-        carSpawner = new DummyCarSpawner();
-        spawnProxy = new SpawnProxy(carSpawner);
-
-        GameEvents.TriggerGameOver(); 
-        spawnProxy.TrySpawn(Time.time);
-        Assert.AreEqual(0, carSpawner.spawnCount, "SpawnProxy should not spawn after GameOver");
     }
 
 }

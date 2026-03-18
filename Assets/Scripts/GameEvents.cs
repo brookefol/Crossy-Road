@@ -6,10 +6,16 @@ public class GameEvents : MonoBehaviour
     // Creates delegate
     public delegate void SpaceAction();
     public static SpaceAction IfSpacePressed;
-     public static event Action OnGameReset;
-     public static event Action OnGameOver;
+    public static Action OnGameReset;
+    public static Action OnGameOver;
+
+    private static RealGameEvents realGameEvents;
     
-// Update is called once per frame
+    void Start()
+    {
+        realGameEvents = GetComponent<RealGameEvents>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -17,20 +23,15 @@ public class GameEvents : MonoBehaviour
             IfSpacePressed?.Invoke();
         }
     }
-
-    //announce to all subscriber that game is over /game is reset
+    //referencing all the methods in the RealGameEvents
      public static void TriggerGameOver()
-    {
-        
-        OnGameOver?.Invoke();
-       
+    {   
+        realGameEvents.TriggerGameOver(); 
     }
-     public static void TriggerGameReset()
-    {
-      
 
-        OnGameReset?.Invoke();
-        
+     public static void TriggerGameReset()
+    {     
+        realGameEvents.TriggerGameReset();       
     }
 
 
